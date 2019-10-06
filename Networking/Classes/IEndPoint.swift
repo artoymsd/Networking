@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol IEndPoint {
+public protocol IEndPoint {
     var baseURL: URL { get }
     var path: String { get }
     var httpMethod: HTTPMethod { get }

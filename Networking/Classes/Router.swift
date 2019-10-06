@@ -9,17 +9,17 @@ import Foundation
 
 public typealias NetworkRouterCompletion = (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void
 
-protocol NetworkRouter: class {
+public protocol NetworkRouter: class {
   associatedtype EndPoint: IEndPoint
   
   func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion)
   func cancel()
 }
 
-class Router<EndPoint: IEndPoint>: NetworkRouter {
+public class Router<EndPoint: IEndPoint>: NetworkRouter {
   private var task: URLSessionTask?
   
-  func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
+  public func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
     DispatchQueue.global(qos: .userInitiated).async {
       
       let session = URLSession.shared
@@ -50,7 +50,7 @@ class Router<EndPoint: IEndPoint>: NetworkRouter {
     }
   }
   
-  func cancel() {
+  public func cancel() {
     self.task?.cancel()
   }
   
