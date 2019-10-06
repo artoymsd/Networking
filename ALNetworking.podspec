@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
   DESC
 
   spec.homepage     = "https://github.com/artoymsd/networking"
-  spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.author       = { "Artem Sidorenko" => "artoymsd@gmail.com" }
 
   spec.platform     = :ios, "10.0"
