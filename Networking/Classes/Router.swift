@@ -20,20 +20,29 @@ class Router<EndPoint: IEndPoint>: NetworkRouter {
   private var task: URLSessionTask?
   
   func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
-    DispatchQueue.global().async {
+    DispatchQueue.global(qos: .userInitiated).async {
+      
       let session = URLSession.shared
+      
       do {
         let request = try self.buildRequest(from: route)
+        if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
+          completion(cachedResponse.data, cachedResponse.response, nil)
+        } else {
+          self.task = session.dataTask(with: request, completionHandler: { data, response, error in
+            if error != nil {
+              completion(nil, nil, error)
+            }
+            if let response = response as? HTTPURLResponse {
+              if let data = data, response.statusCode < 300 {
+                let cachedData = CachedURLResponse(response: response, data: data, storagePolicy: .allowedInMemoryOnly)
+                URLCache.shared.storeCachedResponse(cachedData, for: request)
+              }
               
-        self.task = session.dataTask(with: request, completionHandler: { data, response, error in
-          if error != nil {
-            
-            completion(nil, nil, error)
-          }
-          if let response = response as? HTTPURLResponse {
-            completion(data, response, error)
-          }
-        })
+              completion(data, response, error)
+            }
+          })
+        }
       } catch {
         completion(nil, nil, error)
       }
