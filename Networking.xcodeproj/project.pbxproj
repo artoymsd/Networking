@@ -15,7 +15,7 @@
 		945C7CEF2349DE85009471E6 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE82349DE85009471E6 /* JSONParameterEncoder.swift */; };
 		945C7CF02349DE85009471E6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE92349DE85009471E6 /* HTTPMethod.swift */; };
 		945C7CF12349DE85009471E6 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CEA2349DE85009471E6 /* Router.swift */; };
-		945C7CF32349DEE1009471E6 /* Networking.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 945C7CF22349DEE1009471E6 /* Networking.podspec */; };
+		945C7CF32349DEE1009471E6 /* ALNetworking.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 945C7CF22349DEE1009471E6 /* ALNetworking.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		945C7CE82349DE85009471E6 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
 		945C7CE92349DE85009471E6 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		945C7CEA2349DE85009471E6 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		945C7CF22349DEE1009471E6 /* Networking.podspec */ = {isa = PBXFileReference; lastKnownFileType = file; path = Networking.podspec; sourceTree = SOURCE_ROOT; };
+		945C7CF22349DEE1009471E6 /* ALNetworking.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ALNetworking.podspec; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 		945C7CD92349DE47009471E6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				945C7CF22349DEE1009471E6 /* Networking.podspec */,
+				945C7CF22349DEE1009471E6 /* ALNetworking.podspec */,
 				945C7CE22349DE85009471E6 /* Classes */,
 				945C7CDA2349DE47009471E6 /* Networking.h */,
 				945C7CDB2349DE47009471E6 /* Info.plist */,
@@ -161,7 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				945C7CF32349DEE1009471E6 /* Networking.podspec in Resources */,
+				945C7CF32349DEE1009471E6 /* ALNetworking.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

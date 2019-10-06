@@ -18,6 +18,7 @@ public protocol NetworkRouter: class {
 
 public class Router<EndPoint: IEndPoint>: NetworkRouter {
   private var task: URLSessionTask?
+  public init() {}
   
   public func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
     DispatchQueue.global(qos: .userInitiated).async {
