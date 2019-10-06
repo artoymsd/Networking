@@ -8,12 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		945C7CDC2349DE47009471E6 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 945C7CDA2349DE47009471E6 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		945C7CEB2349DE85009471E6 /* IEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE32349DE85009471E6 /* IEndPoint.swift */; };
+		945C7CEC2349DE85009471E6 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE42349DE85009471E6 /* HTTPTask.swift */; };
+		945C7CED2349DE85009471E6 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE62349DE85009471E6 /* ParameterEncoding.swift */; };
+		945C7CEE2349DE85009471E6 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE72349DE85009471E6 /* URLParameterEncoder.swift */; };
+		945C7CEF2349DE85009471E6 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE82349DE85009471E6 /* JSONParameterEncoder.swift */; };
+		945C7CF02349DE85009471E6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE92349DE85009471E6 /* HTTPMethod.swift */; };
+		945C7CF12349DE85009471E6 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CEA2349DE85009471E6 /* Router.swift */; };
+		945C7CF32349DEE1009471E6 /* Networking.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 945C7CF22349DEE1009471E6 /* Networking.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		945C7CD72349DE47009471E6 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		945C7CDA2349DE47009471E6 /* Networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		945C7CDB2349DE47009471E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		945C7CE32349DE85009471E6 /* IEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IEndPoint.swift; sourceTree = "<group>"; };
+		945C7CE42349DE85009471E6 /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
+		945C7CE62349DE85009471E6 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		945C7CE72349DE85009471E6 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
+		945C7CE82349DE85009471E6 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
+		945C7CE92349DE85009471E6 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		945C7CEA2349DE85009471E6 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		945C7CF22349DEE1009471E6 /* Networking.podspec */ = {isa = PBXFileReference; lastKnownFileType = file; path = Networking.podspec; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +62,34 @@
 		945C7CD92349DE47009471E6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				945C7CF22349DEE1009471E6 /* Networking.podspec */,
+				945C7CE22349DE85009471E6 /* Classes */,
 				945C7CDA2349DE47009471E6 /* Networking.h */,
 				945C7CDB2349DE47009471E6 /* Info.plist */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		945C7CE22349DE85009471E6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				945C7CE52349DE85009471E6 /* Encoding */,
+				945C7CE32349DE85009471E6 /* IEndPoint.swift */,
+				945C7CE42349DE85009471E6 /* HTTPTask.swift */,
+				945C7CE92349DE85009471E6 /* HTTPMethod.swift */,
+				945C7CEA2349DE85009471E6 /* Router.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		945C7CE52349DE85009471E6 /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				945C7CE62349DE85009471E6 /* ParameterEncoding.swift */,
+				945C7CE72349DE85009471E6 /* URLParameterEncoder.swift */,
+				945C7CE82349DE85009471E6 /* JSONParameterEncoder.swift */,
+			);
+			path = Encoding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				945C7CF32349DEE1009471E6 /* Networking.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +172,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				945C7CEF2349DE85009471E6 /* JSONParameterEncoder.swift in Sources */,
+				945C7CEE2349DE85009471E6 /* URLParameterEncoder.swift in Sources */,
+				945C7CF02349DE85009471E6 /* HTTPMethod.swift in Sources */,
+				945C7CF12349DE85009471E6 /* Router.swift in Sources */,
+				945C7CED2349DE85009471E6 /* ParameterEncoding.swift in Sources */,
+				945C7CEC2349DE85009471E6 /* HTTPTask.swift in Sources */,
+				945C7CEB2349DE85009471E6 /* IEndPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +321,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appland.networking.Networking;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appland.networking;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -297,7 +345,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appland.networking.Networking;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appland.networking;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
