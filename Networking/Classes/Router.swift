@@ -27,6 +27,7 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
       
       do {
         let request = try self.buildRequest(from: route)
+        
         if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
           completion(cachedResponse.data, cachedResponse.response, nil)
         } else {
@@ -34,6 +35,7 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
             if error != nil {
               completion(nil, nil, error)
             }
+            
             if let response = response as? HTTPURLResponse {
               if let data = data, response.statusCode < 300 {
                 let cachedData = CachedURLResponse(response: response, data: data, storagePolicy: .allowedInMemoryOnly)
@@ -44,6 +46,7 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
             }
           })
         }
+        
       } catch {
         completion(nil, nil, error)
       }

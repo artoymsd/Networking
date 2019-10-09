@@ -1,0 +1,25 @@
+disabled_rules:
+ - trailing_whitespace
+ - identifier_name
+
+excluded: 
+ - Pods
+
+line_length: 300
+
+identifier_name: 
+ min_length: 2
+
+vertical_whitespace:
+ max_empty_lines: 2
+
+function_parameter_count:
+ warning: 10
+ error: 15
+
+file_length:
+ warning: 500
+
+type_body_length:
+ warning: 400
+ error: 450
