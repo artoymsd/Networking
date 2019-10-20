@@ -28,24 +28,25 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
       do {
         let request = try self.buildRequest(from: route)
         
-        if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
-          completion(cachedResponse.data, cachedResponse.response, nil)
-        } else {
+//        if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
+//          completion(cachedResponse.data, cachedResponse.response, nil)
+//        } else {
           self.task = session.dataTask(with: request, completionHandler: { data, response, error in
             if error != nil {
               completion(nil, nil, error)
             }
             
             if let response = response as? HTTPURLResponse {
-              if let data = data, response.statusCode < 300 {
-                let cachedData = CachedURLResponse(response: response, data: data, storagePolicy: .allowedInMemoryOnly)
-                URLCache.shared.storeCachedResponse(cachedData, for: request)
-              }
+              
+//              if let data = data, response.statusCode == 200 {
+//                let cachedData = CachedURLResponse(response: response, data: data, storagePolicy: .allowedInMemoryOnly)
+//                URLCache.shared.storeCachedResponse(cachedData, for: request)
+//              }
               
               completion(data, response, error)
             }
           })
-        }
+//        }
         
       } catch {
         completion(nil, nil, error)
