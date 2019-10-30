@@ -22,32 +22,20 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
   
   public func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
     DispatchQueue.global(qos: .userInitiated).async {
-      
       let session = URLSession.shared
       
       do {
         let request = try self.buildRequest(from: route)
         
-//        if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
-//          completion(cachedResponse.data, cachedResponse.response, nil)
-//        } else {
-          self.task = session.dataTask(with: request, completionHandler: { data, response, error in
-            if error != nil {
-              completion(nil, nil, error)
-            }
-            
-            if let response = response as? HTTPURLResponse {
-              
-//              if let data = data, response.statusCode == 200 {
-//                let cachedData = CachedURLResponse(response: response, data: data, storagePolicy: .allowedInMemoryOnly)
-//                URLCache.shared.storeCachedResponse(cachedData, for: request)
-//              }
-              
-              completion(data, response, error)
-            }
-          })
-//        }
-        
+        self.task = session.dataTask(with: request, completionHandler: { data, response, error in
+          if error != nil {
+            completion(nil, nil, error)
+          }
+          
+          if let response = response as? HTTPURLResponse {
+            completion(data, response, error)
+          }
+        })
       } catch {
         completion(nil, nil, error)
       }
@@ -60,13 +48,7 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
   }
   
   fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
-    var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path),
-                             cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
-                             timeoutInterval: 15.0)
-    
-    request.httpMethod = route.httpMethod.rawValue
-    request.setValue("XMLHttpRequest", forHTTPHeaderField: "X-Requested-With")
-    
+    var request = prepareRequest(route.baseURL.appendingPathComponent(route.path), method: route.httpMethod)
     do {
       switch route.task {
       case .request:
@@ -111,5 +93,14 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
     for (key, value) in headers {
       request.setValue(value, forHTTPHeaderField: key)
     }
+  }
+  
+  fileprivate func prepareRequest(_ url: URL, method: HTTPMethod = .get) -> URLRequest {
+    var request = URLRequest(url: url,
+                             cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                             timeoutInterval: 15.0)
+    request.httpMethod = method.rawValue
+    request.setValue("XMLHttpRequest", forHTTPHeaderField: "X-Requested-With")
+    return request
   }
 }
