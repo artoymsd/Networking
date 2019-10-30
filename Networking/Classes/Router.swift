@@ -54,18 +54,22 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
       case .request:
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
       case .requestParameters(let bodyParameters,
+                              let model,
                               let bodyEncoding,
                               let urlParameters):
         try self.configureParameters(bodyParameters: bodyParameters,
+                                     model: model,
                                      bodyEncoding: bodyEncoding,
                                      urlParameters: urlParameters,
                                      request: &request)
       case .requestParametersAndHeaders(let bodyParameters,
+                                        let model,
                                         let bodyEncoding,
                                         let urlParameters,
                                         let additionalHeaders):
         self.addAdditionalHeaders(additionalHeaders, request: &request)
         try self.configureParameters(bodyParameters: bodyParameters,
+                                     model: model,
                                      bodyEncoding: bodyEncoding,
                                      urlParameters: urlParameters,
                                      request: &request)
@@ -77,12 +81,13 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
   }
   
   fileprivate func configureParameters(bodyParameters: Parameters?,
+                                       model: Encodable?,
                                        bodyEncoding: ParameterEncoding,
                                        urlParameters: Parameters?,
                                        request: inout URLRequest) throws {
     do {
       try bodyEncoding.encode(urlRequest: &request,
-                              bodyParameters: bodyParameters, urlParameters: urlParameters)
+                              bodyParameters: bodyParameters, model: model != nil ? AnyEncodable(model!) : nil, urlParameters: urlParameters)
     } catch {
       throw error
     }

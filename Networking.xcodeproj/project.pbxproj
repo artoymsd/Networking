@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9417E04023698B72006DE867 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9417E03F23698B72006DE867 /* AnyEncodable.swift */; };
 		945C7CDC2349DE47009471E6 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 945C7CDA2349DE47009471E6 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		945C7CEB2349DE85009471E6 /* IEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE32349DE85009471E6 /* IEndPoint.swift */; };
 		945C7CEC2349DE85009471E6 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE42349DE85009471E6 /* HTTPTask.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9417E03F23698B72006DE867 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		945C7CD72349DE47009471E6 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		945C7CDA2349DE47009471E6 /* Networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		945C7CDB2349DE47009471E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		945C7CE52349DE85009471E6 /* Encoding */ = {
 			isa = PBXGroup;
 			children = (
+				9417E03F23698B72006DE867 /* AnyEncodable.swift */,
 				945C7CE62349DE85009471E6 /* ParameterEncoding.swift */,
 				945C7CE72349DE85009471E6 /* URLParameterEncoder.swift */,
 				945C7CE82349DE85009471E6 /* JSONParameterEncoder.swift */,
@@ -198,6 +201,7 @@
 				945C7CEE2349DE85009471E6 /* URLParameterEncoder.swift in Sources */,
 				945C7CF02349DE85009471E6 /* HTTPMethod.swift in Sources */,
 				945C7CF12349DE85009471E6 /* Router.swift in Sources */,
+				9417E04023698B72006DE867 /* AnyEncodable.swift in Sources */,
 				945C7CED2349DE85009471E6 /* ParameterEncoding.swift in Sources */,
 				945C7CEC2349DE85009471E6 /* HTTPTask.swift in Sources */,
 				945C7CEB2349DE85009471E6 /* IEndPoint.swift in Sources */,
