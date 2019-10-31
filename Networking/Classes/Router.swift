@@ -87,7 +87,7 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
                                        request: inout URLRequest) throws {
     do {
       try bodyEncoding.encode(urlRequest: &request,
-                              bodyParameters: bodyParameters, model: model != nil ? AnyEncodable(model!) : nil, urlParameters: urlParameters)
+                              bodyParameters: bodyParameters, model: model, urlParameters: urlParameters)
     } catch {
       throw error
     }

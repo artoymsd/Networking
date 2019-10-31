@@ -20,7 +20,7 @@ public enum ParameterEncoding {
   
   public func encode(urlRequest: inout URLRequest,
                      bodyParameters: Parameters?,
-                     model: AnyEncodable?,
+                     model: Encodable?,
                      urlParameters: Parameters?) throws {
     do {
       switch self {

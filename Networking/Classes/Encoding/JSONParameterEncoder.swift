@@ -19,9 +19,11 @@ public struct JSONParameterEncoder: ParameterEncoder {
       throw NetworkError.encodingFailed
     }
   }
-  public func encode<EncodableType: Encodable>(urlRequest: inout URLRequest, model: EncodableType) throws {
+  
+  public func encode(urlRequest: inout URLRequest, model: Encodable) throws {
     do {
-      let jsonAsData = try JSONEncoder().encode(model)
+      let encodable = AnyEncodable(model)
+      let jsonAsData = try JSONEncoder().encode(encodable)
       urlRequest.httpBody = jsonAsData
       if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
