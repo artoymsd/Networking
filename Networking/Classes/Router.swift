@@ -22,7 +22,7 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
   
   public func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
     DispatchQueue.global(qos: .userInitiated).async {
-      let session = URLSession.shared
+      let session = URLSession(configuration: URLSessionConfiguration.default)
       
       do {
         let request = try self.buildRequest(from: route)
