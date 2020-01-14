@@ -12,12 +12,17 @@ public typealias NetworkRouterCompletion = (_ data: Data?, _ response: URLRespon
 public protocol NetworkRouter: class {
   associatedtype EndPoint: IEndPoint
   
+  var globalHeaders: HTTPHeaders? { get set }
+  
   func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion)
   func cancel()
 }
 
 public class Router<EndPoint: IEndPoint>: NetworkRouter {
+  public var globalHeaders: HTTPHeaders?
+  
   private var task: URLSessionTask?
+  
   public init() {}
   
   public func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
@@ -49,10 +54,11 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
   
   fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
     var request = prepareRequest(route.baseURL.appendingPathComponent(route.path), method: route.httpMethod)
+    
     do {
       switch route.task {
-      case .request:
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      case .request: request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
       case .requestParameters(let bodyParameters,
                               let model,
                               let bodyEncoding,
@@ -62,6 +68,7 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
                                      bodyEncoding: bodyEncoding,
                                      urlParameters: urlParameters,
                                      request: &request)
+        
       case .requestParametersAndHeaders(let bodyParameters,
                                         let model,
                                         let bodyEncoding,
@@ -86,8 +93,7 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
                                        urlParameters: Parameters?,
                                        request: inout URLRequest) throws {
     do {
-      try bodyEncoding.encode(urlRequest: &request,
-                              bodyParameters: bodyParameters, model: model, urlParameters: urlParameters)
+      try bodyEncoding.encode(urlRequest: &request, bodyParameters: bodyParameters, model: model, urlParameters: urlParameters)
     } catch {
       throw error
     }
@@ -101,11 +107,11 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
   }
   
   fileprivate func prepareRequest(_ url: URL, method: HTTPMethod = .get) -> URLRequest {
-    var request = URLRequest(url: url,
-                             cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
-                             timeoutInterval: 15.0)
+    var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 15.0)
     request.httpMethod = method.rawValue
-    request.setValue("XMLHttpRequest", forHTTPHeaderField: "X-Requested-With")
+    
+    self.addAdditionalHeaders(globalHeaders, request: &request)
+    
     return request
   }
 }
