@@ -17,6 +17,7 @@
 		945C7CF02349DE85009471E6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CE92349DE85009471E6 /* HTTPMethod.swift */; };
 		945C7CF12349DE85009471E6 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945C7CEA2349DE85009471E6 /* Router.swift */; };
 		945C7CF32349DEE1009471E6 /* ALNetworking.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 945C7CF22349DEE1009471E6 /* ALNetworking.podspec */; };
+		94D8A36023D9FCF900F0C6CF /* URLEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D8A35F23D9FCF900F0C6CF /* URLEncodable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +32,8 @@
 		945C7CE82349DE85009471E6 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
 		945C7CE92349DE85009471E6 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		945C7CEA2349DE85009471E6 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		945C7CF22349DEE1009471E6 /* ALNetworking.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ALNetworking.podspec; sourceTree = SOURCE_ROOT; };
+		945C7CF22349DEE1009471E6 /* ALNetworking.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ALNetworking.podspec; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		94D8A35F23D9FCF900F0C6CF /* URLEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncodable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				945C7CE62349DE85009471E6 /* ParameterEncoding.swift */,
 				945C7CE72349DE85009471E6 /* URLParameterEncoder.swift */,
 				945C7CE82349DE85009471E6 /* JSONParameterEncoder.swift */,
+				94D8A35F23D9FCF900F0C6CF /* URLEncodable.swift */,
 			);
 			path = Encoding;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				945C7CF12349DE85009471E6 /* Router.swift in Sources */,
 				9417E04023698B72006DE867 /* AnyEncodable.swift in Sources */,
 				945C7CED2349DE85009471E6 /* ParameterEncoding.swift in Sources */,
+				94D8A36023D9FCF900F0C6CF /* URLEncodable.swift in Sources */,
 				945C7CEC2349DE85009471E6 /* HTTPTask.swift in Sources */,
 				945C7CEB2349DE85009471E6 /* IEndPoint.swift in Sources */,
 			);

@@ -57,30 +57,17 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
     
     do {
       switch route.task {
-      case .request: request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      case .request(let req):
+        self.addAdditionalHeaders(req.additionHeaders, request: &request)
         
-      case .requestParameters(let bodyParameters,
-                              let model,
-                              let bodyEncoding,
-                              let urlParameters):
-        try self.configureParameters(bodyParameters: bodyParameters,
-                                     model: model,
-                                     bodyEncoding: bodyEncoding,
-                                     urlParameters: urlParameters,
-                                     request: &request)
-        
-      case .requestParametersAndHeaders(let bodyParameters,
-                                        let model,
-                                        let bodyEncoding,
-                                        let urlParameters,
-                                        let additionalHeaders):
-        self.addAdditionalHeaders(additionalHeaders, request: &request)
-        try self.configureParameters(bodyParameters: bodyParameters,
-                                     model: model,
-                                     bodyEncoding: bodyEncoding,
-                                     urlParameters: urlParameters,
+        try self.configureParameters(bodyParameters: req.bodyParameters,
+                                     bodyModel: req.bodyModel,
+                                     bodyEncoding: req.bodyEncoding,
+                                     urlParameters: req.urlParameters,
+                                     urlModel: req.urlModel,
                                      request: &request)
       }
+      
       return request
     } catch {
       throw error
@@ -88,12 +75,18 @@ public class Router<EndPoint: IEndPoint>: NetworkRouter {
   }
   
   fileprivate func configureParameters(bodyParameters: Parameters?,
-                                       model: Encodable?,
+                                       bodyModel: Encodable?,
                                        bodyEncoding: ParameterEncoding,
                                        urlParameters: Parameters?,
+                                       urlModel: URLEncodable?,
                                        request: inout URLRequest) throws {
     do {
-      try bodyEncoding.encode(urlRequest: &request, bodyParameters: bodyParameters, model: model, urlParameters: urlParameters)
+      try bodyEncoding.encode(
+        urlRequest: &request,
+        bodyParameters: bodyParameters,
+        bodyModel: bodyModel,
+        urlParameters: urlParameters,
+        urlModel: urlModel)
     } catch {
       throw error
     }

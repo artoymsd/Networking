@@ -19,21 +19,25 @@ public enum ParameterEncoding {
   case urlAndJsonEncoding
   
   public func encode(urlRequest: inout URLRequest,
-                     bodyParameters: Parameters?,
-                     model: Encodable?,
-                     urlParameters: Parameters?) throws {
+                     bodyParameters: Parameters? = nil,
+                     bodyModel: Encodable? = nil,
+                     urlParameters: Parameters? = nil,
+                     urlModel: URLEncodable? = nil) throws {
     do {
       switch self {
         
       case .urlEncoding:
-        guard let urlParameters = urlParameters else { return }
-        try URLParameterEncoder().encode(urlRequest: &urlRequest, with: urlParameters)
+        if let urlParameters = urlParameters {
+          try URLParameterEncoder().encode(urlRequest: &urlRequest, with: urlParameters)
+        } else if let model = urlModel {
+          try URLParameterEncoder().encode(urlRequest: &urlRequest, with: model)
+        } else { return }
         
       case .jsonEncoding:
         if let bodyParameters = bodyParameters {
           try JSONParameterEncoder().encode(urlRequest: &urlRequest, with: bodyParameters)
-        } else if let model = model {
-          try JSONParameterEncoder().encode(urlRequest: &urlRequest, model: model)
+        } else if let model = bodyModel {
+          try JSONParameterEncoder().encode(urlRequest: &urlRequest, with: model)
         } else { return }
         
       case .urlAndJsonEncoding:

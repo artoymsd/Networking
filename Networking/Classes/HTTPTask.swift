@@ -10,16 +10,12 @@ import Foundation
 public typealias HTTPHeaders = [String: String]
 
 public enum HTTPTask {
-  case request
-  
-  case requestParameters(bodyParameters: Parameters?,
-    model: Encodable?,
-    bodyEncoding: ParameterEncoding,
-    urlParameters: Parameters?)
-  
-  case requestParametersAndHeaders(bodyParameters: Parameters?,
-    model: Encodable?,
-    bodyEncoding: ParameterEncoding,
-    urlParameters: Parameters?,
-    additionHeaders: HTTPHeaders?)
+  case request(
+    bodyParameters: Parameters? = nil,
+    bodyModel: Encodable? = nil,
+    bodyEncoding: ParameterEncoding = .urlEncoding,
+    urlParameters: Parameters? = nil,
+    urlModel: URLEncodable? = nil,
+    additionHeaders: HTTPHeaders? = nil
+  )
 }

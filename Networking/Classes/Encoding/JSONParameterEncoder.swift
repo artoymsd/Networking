@@ -11,25 +11,26 @@ public struct JSONParameterEncoder: ParameterEncoder {
   public func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
     do {
       let jsonAsData = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-      urlRequest.httpBody = jsonAsData
-      if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      }
+      supplementRequest(&urlRequest, jsonAsData)
     } catch {
       throw NetworkError.encodingFailed
     }
   }
   
-  public func encode(urlRequest: inout URLRequest, model: Encodable) throws {
+  public func encode(urlRequest: inout URLRequest, with model: Encodable) throws {
     do {
       let encodable = AnyEncodable(model)
       let jsonAsData = try JSONEncoder().encode(encodable)
-      urlRequest.httpBody = jsonAsData
-      if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      }
+     supplementRequest(&urlRequest, jsonAsData)
     } catch {
       throw NetworkError.encodingFailed
+    }
+  }
+  
+  fileprivate func supplementRequest(_ urlRequest: inout URLRequest, _ data: Data) {
+    urlRequest.httpBody = data
+    if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+      urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
     }
   }
 }
